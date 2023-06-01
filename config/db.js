@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 
 // Connection to DATABASE
-const conn = mysql2.createConnection({
+const conn = mysql.createConnection({
   host: "db4free.net",
   user: "randira",
   password: "123randi4",
