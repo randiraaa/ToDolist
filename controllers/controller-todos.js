@@ -42,3 +42,24 @@ exports.todosId = async (req, res) => {
     response.error("Failed to select TODOS!", res);
   }
 };
+
+// Menambahkan TODOS
+exports.addTodos = async (req, res) => {
+  try {
+    let description = req.body.description;
+    const query = "INSERT INTO todolist (description) VALUES (?)";
+    const rows = await new Promise((resolve, reject) => {
+      connection.query(query, [description], (error, rows, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+    response.ok("Add TODOS success!", res);
+  } catch (error) {
+    console.log(error);
+    response.error("Failed to add TODOS!", res);
+  }
+};
