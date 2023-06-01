@@ -8,4 +8,5 @@ module.exports = (app) => {
   app.route("/todos").get(jsonDataTodos.allTodos);
   app.route("/todos/:id").get(jsonDataTodos.todosId);
   app.route("/todos/add").post(jsonDataTodos.addTodos);
+  app.route("/todos/update/:id").put(jsonDataTodos.updateTodos);
 };
