@@ -85,3 +85,24 @@ exports.updateTodos = async (req, res) => {
     response.error("Failed update TODOS!", res);
   }
 };
+
+// Menghapus TODOS berdasarkan id
+exports.deleteTodos = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const query = "DELETE FROM todolist WHERE id = ?";
+    const rows = await new Promise((resolve, reject) => {
+      connection.query(query, [id], (error, rows, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+    response.ok("Delete TODOS success!", res);
+  } catch (error) {
+    console.log(error);
+    response.error("Failed delete TODOS!", res);
+  }
+};
