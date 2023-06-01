@@ -8,6 +8,6 @@ exports.index = async (req, res) => {
     response.ok("Application is Running!", res);
   } catch (error) {
     console.log(error);
-    response.error("Internal Server Error", res);
+    response.error("Internal Server Error!", res);
   }
 };
