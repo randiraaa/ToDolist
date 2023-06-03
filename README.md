@@ -45,6 +45,18 @@ Admin roles have permission to be able to delete users, while users are not give
 
 ## Database
 
+- Database :  
+  Database online at [db4free.net](https://www.db4free.net/phpMyAdmin).
+
+```
+{
+  "username": "randira",
+  "password": "123randi4",
+  "database": "dbtpatodolist",
+  "host": "db4free.net",
+}
+```
+
 Database created with sequelize-cli :
 
 - Table todolist  
@@ -64,8 +76,9 @@ Database created with sequelize-cli :
 node app.js / nodemon app
 ```
 
-![server](README-assets/consoleServer.png)  
-![server](README-assets/server.png)
+# ![server](README-assets/consoleServer.png)
+
+# ![server](README-assets/server.png)
 
 #### Todos :
 
