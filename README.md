@@ -45,7 +45,7 @@ Admin roles have permission to be able to delete users, while users are not give
 
 ## Database
 
-Database created with sequelize-cli:
+Database created with sequelize-cli :
 
 - Table todolist  
   ![tb-todo](README-assets/tb-todo.png)
@@ -57,6 +57,15 @@ Database created with sequelize-cli:
   ![tb-token](README-assets/tb-token.png)
 
 ## Web Service & API Documentation
+
+### Server
+
+```git
+node app.js / nodemon app
+```
+
+![server](README-assets/consoleServer.png)  
+![server](README-assets/server.png)
 
 #### Todos :
 
