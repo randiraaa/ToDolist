@@ -80,84 +80,161 @@ node app.js / nodemon app
 
 # ![server](README-assets/server.png)
 
-#### Todos :
+## Postman
 
-Get All todos
+### ==== User ====
 
-```
-GET /todos
-```
-
-Get Single todos
+### Register User Roles "admin" :
 
 ```
-GET /todos/{id}
+POST | http://localhost:3000/register
 ```
 
-Add a new todos
+raw
 
 ```
-POST /todos
-```
-
-```
-Body:
 {
-  "title": String,
-  "description": String,
-  "isCompleted": Boolean
+    "username" : "randi",
+    "email" : "randi@gmail.com",
+    "password" : "123randi4",
+    "roles" : "admin"
 }
 ```
 
-Update todos
+body
 
 ```
-PUT /todos/{id}
-```
-
-```
-Body:
 {
-  "title": String,
-  "description": String,
-  "isCompleted": Boolean
+    "success": true,
+    "message": "Register success!"
 }
 ```
 
-Delete todos
+### Register User Roles "user" :
 
 ```
-DELETE todos/{id}
+POST | http://localhost:3000/register
 ```
 
-#### Auth :
-
-Register Login
+raw
 
 ```
-POST /users/register
-```
-
-```
-Body:
 {
-  "username": String,
-  "phone": String,
-  "email": String,
-  "password": String,
+    "username" : "jhon",
+    "email" : "jhon@gmail.com",
+    "password" : "123jhon4",
+    "roles" : "user"
 }
 ```
 
-User Login
+body
 
 ```
-POST /users/login
-```
-
-```
-Body:
 {
-  "email": String,
-  "password": String
+    "success": true,
+    "message": "Register success!"
+}
+```
+
+### Register user, if the user already exists identified from the email:
+
+body
+
+```
+{
+    "status": 200,
+    "values": "Email already exists!"
+}
+```
+
+### Login User :
+
+```
+POST | http://localhost:3000/login
+```
+
+raw
+
+```
+{
+    "email" : "randi@gmail.com",
+    "password" : "123randi4"
+}
+```
+
+body
+
+```
+{
+    "success": true,
+    "message": "Token generated successfully!",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGVzIjoiYWRtaW4iLCJpYXQiOjE2ODU4MDU2MDQsImV4cCI6MTY4NTgwNzA0NH0._Yrr5VNEhkgQ9H9fspZk1Vfu6ezGiYdLRqLtWrQuU7s",
+    "currUser": 1
+}
+```
+
+### Authentication & Authorization Roles "admin" & "user" :
+
+### == Roles "admin" ==
+
+```
+DELETE | http://localhost:3000/auth/delete/3
+```
+
+- Autorization -> Bearer Token  
+  Token :
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGVzIjoiYWRtaW4iLCJpYXQiOjE2ODU4MDU2MDQsImV4cCI6MTY4NTgwNzA0NH0._Yrr5VNEhkgQ9H9fspZk1Vfu6ezGiYdLRqLtWrQuU7s
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": "Delete user success!"
+}
+```
+
+- Wrong tokens :  
+  Response = body :
+
+```
+{
+    "auth": false,
+    "message": "Tokens are not listed!"
+}
+```
+
+- No tokens :  
+  Response = body :
+
+```
+{
+    "auth": false,
+    "message": "No tokens!"
+}
+```
+
+### == Roles "user" ==
+
+```
+DELETE | http://localhost:3000/auth/delete/2
+```
+
+- Autorization -> Bearer Token  
+  Token :
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQsInJvbGVzIjoidXNlciIsImlhdCI6MTY4NTgwNjkyMywiZXhwIjoxNjg1ODA4MzYzfQ.sirirQ5pcGYQc7lDizHx05Ej0wuIJcfhKGVmPKSss2I
+```
+
+Response = body :
+
+```
+{
+    "auth": false,
+    "message": "You are not granted permission! Please contact admin for help center!"
 }
 ```
