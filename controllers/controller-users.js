@@ -55,7 +55,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// Login
 exports.login = async (req, res) => {
   try {
     const post = {
@@ -83,12 +82,12 @@ exports.login = async (req, res) => {
       if (passwordMatch) {
         const userId = rows[0].id;
 
-        let query = "SELECT * FROM ?? WHERE id = ?";
-        let table = ["tokenauth", userId];
-        query = mysql.format(query, table);
+        let deleteQuery = "DELETE FROM ?? WHERE id = ?";
+        let deleteTable = ["tokenauth", userId];
+        deleteQuery = mysql.format(deleteQuery, deleteTable);
 
-        const existingTokens = await new Promise((resolve, reject) => {
-          connection.query(query, (error, rows) => {
+        await new Promise((resolve, reject) => {
+          connection.query(deleteQuery, (error, rows) => {
             if (error) {
               reject(error);
             } else {
@@ -97,24 +96,7 @@ exports.login = async (req, res) => {
           });
         });
 
-        if (existingTokens.length > 0) {
-          // Verifikasi token menghapus yang ada & mengganti baru
-          let deleteQuery = "DELETE FROM ?? WHERE id = ?";
-          let deleteTable = ["tokenauth", userId];
-          deleteQuery = mysql.format(deleteQuery, deleteTable);
-
-          await new Promise((resolve, reject) => {
-            connection.query(deleteQuery, (error, rows) => {
-              if (error) {
-                reject(error);
-              } else {
-                resolve(rows);
-              }
-            });
-          });
-        }
-
-        let token = jwt.sign({ id: rows[0].id }, tokenSecret.secret, {
+        let token = jwt.sign({ id: rows[0].id, roles: rows[0].roles }, tokenSecret.secret, {
           expiresIn: 1440,
         });
         const id = rows[0].id;
@@ -159,5 +141,26 @@ exports.login = async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+  }
+};
+
+// Delete Users
+exports.deleteUser = async (req, res) => {
+  try {
+    let id = req.params.id;
+    const query = "DELETE FROM users WHERE id = ?";
+    const rows = await new Promise((resolve, reject) => {
+      connection.query(query, [id], (error, rows, fields) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+    response.ok("Delete user success!", res);
+  } catch (error) {
+    console.log(error);
+    response.error("Failed delete user!", res);
   }
 };
