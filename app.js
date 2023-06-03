@@ -11,6 +11,8 @@ app.use(morgan("dev"));
 const routes = require("./routes/route");
 routes(app);
 
+app.use("/auth", require("./middleware/verifyAdmin"));
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}...`);
 });
