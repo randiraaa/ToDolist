@@ -136,7 +136,7 @@ body
 }
 ```
 
-### Register user, if the user already exists identified from the email:
+### Register user, if the user already exists identified from the email :
 
 body
 
@@ -170,6 +170,17 @@ body
     "message": "Token generated successfully!",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGVzIjoiYWRtaW4iLCJpYXQiOjE2ODU4MDU2MDQsImV4cCI6MTY4NTgwNzA0NH0._Yrr5VNEhkgQ9H9fspZk1Vfu6ezGiYdLRqLtWrQuU7s",
     "currUser": 1
+}
+```
+
+### Login User, if the user login there is an error in the email and password :
+
+body
+
+```
+{
+    "error": true,
+    "message": "Incorrect email or password!"
 }
 ```
 
