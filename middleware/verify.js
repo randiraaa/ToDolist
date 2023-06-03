@@ -9,18 +9,18 @@ function verifyUser(roles) {
       let token = tokenWithBearer.split(" ")[1];
       jwt.verify(token, tokenSecret.secret, (err, decoded) => {
         if (err) {
-          return res.status(401).send({ auth: false, message: "Token tidak terdaftar!" });
+          return res.status(401).send({ auth: false, message: "Tokens are not listed!" });
         } else {
           if (roles === "admin" && decoded.roles === "admin") {
             req.auth = decoded;
             next();
           } else {
-            return res.status(401).send({ auth: false, message: "Anda tidak diberi izin! Silahkan hubungi admin untuk pusat bantuan!" });
+            return res.status(401).send({ auth: false, message: "You are not granted permission! Please contact admin for help center!" });
           }
         }
       });
     } else {
-      return res.status(401).send({ auth: false, message: "Tidak ada token!" });
+      return res.status(401).send({ auth: false, message: "No tokens!" });
     }
   };
 }
