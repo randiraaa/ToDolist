@@ -249,3 +249,130 @@ Response = body :
     "message": "You are not granted permission! Please contact admin for help center!"
 }
 ```
+
+### ==== To Do List ====
+
+- All Todos :
+
+```
+GET | http://localhost:3000/todos
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": [
+        {
+            "id": 1,
+            "description": "Musik"
+        },
+        {
+            "id": 2,
+            "description": "Olahraga"
+        },
+        {
+            "id": 3,
+            "description": "Membaca"
+        },
+        {
+            "id": 4,
+            "description": "Bernyanyi"
+        },
+        {
+            "id": 5,
+            "description": "Bermain"
+        }
+    ]
+}
+```
+
+- Todos by "id" :
+
+```
+GET | http://localhost:3000/todos/3
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": [
+        {
+            "id": 3,
+            "description": "Membaca"
+        }
+    ]
+}
+```
+
+- Add Todos :
+
+```
+POST | http://localhost:3000/todos/add
+```
+
+raw :
+
+```
+{
+    "description" : "Ngoding"
+}
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": "Add TODOS success!"
+}
+```
+
+- Update Todos :
+
+```
+PUT | http://localhost:3000/todos/update/6
+```
+
+raw before :
+
+```
+{
+    "description" : "Ngoding"
+}
+```
+
+raw after :
+
+```
+{
+    "description" : "Design UI/UX"
+}
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": "Update TODOS success!"
+}
+```
+
+- Delete Todos by "id":
+
+```
+DELETE | http://localhost:3000/todos/delete/6
+```
+
+Response = body :
+
+```
+{
+    "status": 200,
+    "values": "Delete TODOS success!"
+}
+```
