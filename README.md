@@ -90,7 +90,7 @@ node app.js / nodemon app
 POST | http://localhost:3000/register
 ```
 
-raw
+raw :
 
 ```
 {
@@ -101,7 +101,7 @@ raw
 }
 ```
 
-body
+body :
 
 ```
 {
@@ -116,7 +116,7 @@ body
 POST | http://localhost:3000/register
 ```
 
-raw
+raw :
 
 ```
 {
@@ -127,7 +127,7 @@ raw
 }
 ```
 
-body
+body :
 
 ```
 {
@@ -138,7 +138,7 @@ body
 
 ### Register user, if the user already exists identified from the email :
 
-body
+body :
 
 ```
 {
@@ -153,7 +153,7 @@ body
 POST | http://localhost:3000/login
 ```
 
-raw
+raw :
 
 ```
 {
@@ -162,7 +162,7 @@ raw
 }
 ```
 
-body
+body :
 
 ```
 {
@@ -175,7 +175,7 @@ body
 
 ### Login User, if the user login there is an error in the email and password :
 
-body
+body :
 
 ```
 {
@@ -331,7 +331,7 @@ Response = body :
 }
 ```
 
-- Update Todos :
+- Update Todos by "id" :
 
 ```
 PUT | http://localhost:3000/todos/update/6
